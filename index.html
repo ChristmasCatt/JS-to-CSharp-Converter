@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>https://github.com/ChristmasCatt</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f2f2f2;
+        }
+        h1 {
+          text-align: center;
+          font-size: 32px;
+          margin-top: 50px;
+          color: #333;
+        }
+
+        textarea {
+            width: 80%;
+            height: 200px;
+            font-size: 14px;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            background-color: #d1c6e0;
+            animation: input-animation 0.5s ease-in-out;
+            display: block;
+            margin: 0 auto;
+        }
+        button {
+            padding: 12px 20px;
+            border-radius: 40px;
+            background: linear-gradient(to right, #8e2de2, #4a00e0);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19), 0px 6px 6px rgba(0, 0, 0, 0.23);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            display: block;
+            margin: 50px auto;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25), 0px 6px 6px rgba(0, 0, 0, 0.30);
+        }
+
+
+
+        .output {
+            clear: both;
+            margin-top: 50px;
+            padding: 20px;
+            width: 80%;
+            height: 100px;
+            display: block;
+            margin: 0 auto;
+
+            animation: output-animation 0.5s ease-in-out;
+        }
+        @keyframes input-animation {
+          0% {
+            transform: scale(0.9);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+        @keyframes button-animation {
+          0% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(0);
+          }
+        }
+        @keyframes output-animation {
+          0% {
+            opacity: 0;
+          }
+          100% {
+            opacity: 1;
+          }
+        }
+      </style>        
+<script>
+    function convertJStoCSharp() {
+        var jsCode = document.getElementById("jsCode").value;
+    
+    var csCode = jsCode.replace(/var /g, "var ");
+    
+    csCode = csCode.replace(/console.log/g, "Console.WriteLine");
+    
+    csCode = csCode.replace(/function /g, "static void ");
+    
+    csCode = csCode.replace(/'/g, '"');
+    
+    csCode = csCode.replace(/{/g, "{");
+    csCode = csCode.replace(/}/g, "}");
+    
+    csCode = csCode.replace(/==/g, "==");
+    
+    csCode = csCode.replace(/!=/g, "!=");
+    
+    csCode = csCode.replace(/for \(var /g, "for (int ");
+    csCode = csCode.replace(/ in /g, " = 0; ");
+    csCode = csCode.replace(/\)\s*{/g, "; ");
+    
+    csCode = csCode.replace(/if \(/g, "if (");
+    csCode = csCode.replace(/\)\s*{/g, ") {");
+    
+    csCode = csCode.replace(/undefined/g, "null");
+    
+    csCode = csCode.replace(/this/g, "this");
+    
+    csCode = csCode.replace(/new Array/g, "new List");
+    
+    csCode = csCode.replace(/\b(\d+)\b/g, "int $1");
+    
+    csCode = csCode.replace(/\b(true)\b/g, "bool $1");
+    csCode = csCode.replace(/\b(false)\b/g, "bool $1");
+    
+    csCode = csCode.replace(/typeof /g, "typeof ");
+    
+    csCode = csCode.replace(/instanceof /g, "is ");
+    
+    csCode = csCode.replace(/Math.abs/g, "Math.Abs");
+    csCode = csCode.replace(/Math.ceil/g, "Math.Ceiling");
+    csCode = csCode.replace(/Math.floor/g, "Math.Floor");
+    csCode = csCode.replace(/Math.round/g, "Math.Round");
+    
+    csCode = csCode.replace(/\+\s*'/g, " + \"");
+    csCode = csCode.replace(/'\s*\+/g, "\" + ");
+    
+    document.getElementById("csCode").value = csCode;
+    }
+  </script>
+  
+  </head>
+  <body>
+    <h1>Example JavaScript to C# Code Converter</h1>
+    <textarea id="jsCode">Text Input</textarea>
+    <button onclick="convertJStoCSharp()">Convert</button>
+    <div class="output">
+      <textarea id="csCode">Text Output</textarea>
+    </div>
+  </body>
+</html>
